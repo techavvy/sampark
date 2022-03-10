@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/createArticle.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+</head>
+<body>
+    <form action="/articles/create" method="post">
+    <h1 class="header" align="center">Create Post</h1>
+    <input class="inputFields" type="text" name="title" id="title" placeholder="Title" required>
+    <div id="format-btn-div">
+        <button class="format-btn" id="bold"><b>B</b></button><button class="format-btn" id="underline"><u>U</u></button><button class="format-btn" id="italic"><i>I</i></button>
+    </div>
+    <textarea maxlength="250" class="inputFields" type="text" name="post" id="post" placeholder="Post (max 120 words)" required></textarea>
+    <input class="inputFields" type="submit" id="submitBtn" value="POST">
+    </form>
+    <a align="center" href="/dashboard" id="return-link">Cancel</a>
+    <script>
+        const formatBtn = document.getElementsByClassName('format-btn');
+        const boldBtn = document.getElementById('bold').addEventListener('click', (e) => {
+            e.preventDefault()
+            const post = document.getElementById('post');
+            if(post.style.fontWeight == 'bold'){
+                post.style.fontWeight = 'normal';
+            }else{
+                post.style.fontWeight = 'bold';
+            }
+        })
+        const italicBtn = document.getElementById('italic').addEventListener('click', (e) => {
+            e.preventDefault()
+            const post = document.getElementById('post');
+            if(post.style.fontStyle == 'italic'){
+                post.style.fontStyle = 'normal';
+            }else{
+                post.style.fontStyle = 'italic';
+            }
+        })
+        const underlineBtn = document.getElementById('underline').addEventListener('click', (e) => {
+            e.preventDefault()
+            const post = document.getElementById('post');
+            if(post.style.textDecoration == 'underline'){
+                post.style.textDecoration = 'none';
+            }else{
+                post.style.textDecoration = 'underline';
+            }
+        })
+
+    </script>
+</body>
+</html>

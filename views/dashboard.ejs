@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="/js/dashboard.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="sidebar">
+      <a class="active" href="/dashboard">Home</a>
+      <a href="/chat">Chat</a>
+      <div id="profile-div">
+          <a href="/profile">Profile</a>
+        </div>
+        <div id="logout-div">
+          <a id="logout-link" href="/users/logout">Logout</a>
+        </div>
+    </div>
+
+    <div id="chat" class="content">
+      <div id="header-div">
+        <button class="btn btn-info" onclick="changeTheme()" id="themeBtn">Darkmode</button>
+        <h1 class="header" id="heading">Welcome <%= user.firstName%>,</h1>
+      </div>
+      <div class="searchContainer">
+        <input type="search" onkeyup="search()" name="search" id="searchBox" placeholder="Search by title">
+      </div>
+        <div class="createpost-conatiner">
+          <a href="/articles/new" class="btn btn-primary" id="createpost">Create Post</a>
+        </div> 
+        <h1 id="postsHeader">Posts</h1>
+        <div class="postContainer">
+          <% posts.forEach(function (post) { %>
+            <div id="<%= post.id %>" class="postDiv">
+              <h2 class="title"><%= post.title %> </h2>
+              <p class="postedby">Posted by <a class="postedbyUser" href="/users/<%= post.postedBy %>"><%= post.postedBy %></a> on <%= post.createdAt.toLocaleString() %></p>
+              <h4 class="post"><%= post.post %></h4>
+              <div class="shareables">
+                <form id="delete-post-form" action="/articles/delete/<%= post.id %>" method="post"><input type="submit" value="DELETE" class="mb-1 mt-4 btn btn-danger"></form>
+                <form action="" method="post"><input class="mb-1 commentBtn mt-4 btn " type="submit" value="COMMENT"></form>
+              </div>
+              <!-- <div id="comment-section">
+                <div id="comment-div">
+                  <h6> <a class="postedbyUser">ansh15</a> : What on this ? huh!</h6>
+                </div>
+              </div> -->
+            </div>
+            <% }) %>
+          </div>   
+    </div>
+    <script>
+      function search() {
+    let search = document.getElementById('searchBox').value
+    search=search.toLowerCase();
+    let title = document.getElementsByClassName('title');
+    let post = document.getElementsByClassName('postDiv');
+    let article = document.getElementsByClassName('post');
+    let postedBy = document.getElementsByClassName('postedbyUser')
+      
+    for (i = 0; i < title.length; i++) { 
+        if (!title[i].innerHTML.toLowerCase().includes(search) && !article[i].innerHTML.toLowerCase().includes(search) && !postedBy[i].innerHTML.toLowerCase().includes(search)) {
+            post[i].style.display="none";
+          }
+          else {
+            // title[i].innerHTML.style.backgroundColor = 'yellow'
+            post[i].style.display="block";                 
+        }
+    }
+}
+
+  const themeBtn = document.getElementById('themeBtn');
+   function changeTheme(){
+    if(themeBtn.innerText == 'Darkmode'){
+      themeBtn.innerText = 'Lightmode';
+      document.body.style.backgroundColor = 'black';
+      document.getElementById('searchBox').style.boxShadow = 'none'
+      document.getElementById('heading').style.borderBlockColor = '#fff'
+      document.getElementById('searchBox').style.background = 'none'
+      document.getElementById('searchBox').style.color = '#fff';
+      document.body.style.color = 'white';
+    }else if(themeBtn.innerHTML == 'Lightmode') {
+      document.getElementById('heading').style.borderBlockColor = 'black'
+      themeBtn.innerText = 'Darkmode'
+      document.getElementById('searchBox').style.color = 'black';
+      document.body.style.backgroundColor = 'white';
+      document.getElementById('searchBox').style.boxShadow = '0 2px 5px 2px rgb(236, 234, 234)';
+      document.body.style.color = 'black';
+    }
+  }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+  </body>
+</html>

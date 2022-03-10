@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/user.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= user.username %> | Profile</title>
+</head>
+<body>
+    <h1 align="center" id="header">PROFILE</h1>
+    <div class="profile-container">
+        <img id="user-icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/512/000000/external-user-interface-kiranshastry-solid-kiranshastry-1.png"/>
+        <a href="/users/chat/<%= user.username %>" class="contact-link" id="chat-btn"><img id="chat-icon" src="https://img.icons8.com/color/512/000000/chat--v1.png"/></a>
+        <div id="email-container" class="detail-container">
+            <img class="detail-icon" id="username-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAGMUlEQVRoge2Ze1BUZRiHn93FBUYW0SUQL+UNRMwblaksl0Io0KKL1VTWSIlJgiOKSlREK5GYuY6WOuNlC3dybEvDAZUCJmA10wYpS/GW90EQQxBi3XX39IeuIbCyCyI1s89fZ855329+v/Od7z3v+Q44cODAgQMHDhA1O/YDZgK9ukmLvdQB64Hj8K+RfhKxqMJkFmSuzk44S526TV17iAD9NSNNBhM9JOIGo8nsB1RaFEeZzIJMIhbh4eZCzicvEejv041yrVNWUUlM8lcYrugxmsxuQBSwSXzzugxAkxKK2Wzisbez2VF6rNvEWiN/30nCEzZjMJrZNOchy2l3AHHzwEeGe6JTTeF+r5688I6WZZq991qrVdbnlBGzcCveHi7ossIJ8ve87bq4ZcLgvm6UrIgmeJQ3qWuKiM/ayXWT+Z4JbonJLJCkyic+ayfj/T3RrYzG18etVVwrIwC93aTszoxkVvRw1ueU8XTyVuobr3W56JY0NhmZ9o6W1doDvB4xjIKsJ/F0d2kztk0jAE4SMWvmTmTF7PH8sP8kofFfcq6qvstEt6TycgOPz8kmV3eMtOlj2ThfgdTJqlzrRizMfSaALalhHD97maC4TZQfu3hXBbfFH39eQhGn5tCJKtTJwaRNH4tIdOecdo0ATAsexA9Ln8BovE5YfDY79564G3rbpPDAKUJmf0F9g55dmZFMDx9qU55NRgAmBnihWzmF/nJXnl20lbXbfumwWGuoc8uZumALcpmUUlU0oaP72pxrsxGAoT4ySlXRTBrpTeLy3SSp8jGbBbsFt0QQQLmxhLjMXAKHydGppuA/0L5OyS4jAH1kzuzOjODlx4awWnuAl977lr/1RnuHucU1o4nX0rej3FjCc4oHKFj2JF4ebVemO9Ghpsq5h4TsRSH49ndHqSnnwqWrbM96Ee8+Pe0a53JdE8+nfI3u13Mkxozg09njEbe3qq1g94xYEIkgbfpYNswP4uDRShRxao6crrE5/8T5vwiepWbf7xf4LGECqvhHO2wCOmHEwoxIX/IyIqi9+jchb31BcdmZdnN+OnQeRZyaypqrbE9/nNlT/Tsro/NGAARBQBCg9qqeqKSv2LzrN6ux2sLDRCRqqKlrQqDzhcJCp42o848z9f0C5G49KPwgmNH3u/NGxg5S1xQhNNMpCLBMs5dX0rbh168nRekh9PNw4dn0QtblVnRWRseNCAIoNeXEqfYQOMQDXUYYoSPvozA9mKce9rklWm+4jsFoumUucow3xR+GEhLgSWlGGBP85CR8to+ktT9jFjo+Qx2qWnqDidjlpWhLTjNtYn/Ucx7GVSoBoKezE9oFE1iYfYhVOw9T/VcjiKC47Axzo4fxyeujkIhvLGq5TMqud4OI/fwXVucc4WJtE+rkYFxujtWlRi7XX+N5ZRG636tIjBrKpzNGt6o2ErGIFTNGEzDQnYQNBxEEWBk7hoSo1u2Gq1TClnmPEjDgCErtEc5WN7I9Pdzud4ldRo6er+Pp9ws4U93AurcCmRk+6I7xM8MHMaK/DIAgf7nVOJEI0l4YQb8+riRsOEhwUh47lkxm+ADb3+42r5GfDlcTtmAXVbVNbFs4sV0TFoL85Xc00ZyZ4YPISw2ipk6PYl4exb/Z3mnbZERbcpqIlHykEhE/fhhCdKDtzZy9hI/yomRJKO6uTkSlfo+m8KRNee0aWfXdYV75+Ed8fdzY81EYYwd7dFpse4wc6I4uI4xRD/QidnkpSk057RU0q0YM183ELi9l/rr9RI7xpkQZygC5693WbBWf3i4U3SzlSk05ry4tRm8wWY1v00htg4Hod79nc8FJ4iYPJmfxJGSu937TzlLKF8X48XXxKSJT8qmp17cZ28rIqYsNhCTlUXqoClXsGNbOGoeTpOPNXGeRiEVkvvoga2eNY//RSyjm5XG8sqFV3G1G9ldcQjEvl7PVjXyTPIHENup+dxE3eTA7UiZRXatHsbiAPRW3d9qWW/0msEEiFuHVy5mcxZMIHNL1i7ojlP15hZile6iuN2C68XX6JrCp9Sa2VIJzj7vSFHcJIkBvNNFkMN+2id384fflxm+F/+ZUtOYKN34rdN2WjgMHDhw4cPB/4x8yzSCE3dGcwwAAAABJRU5ErkJggg==">
+            <h3 id="email"><%= user.email %></h3>
+        </div>
+        <div id="firstName-container" class="detail-container">
+            <img class="detail-icon" id="name-icon" src="https://img.icons8.com/fluency/512/000000/employee-card.png"/>
+            <h3 id="name"><%= user.firstName %> <%= user.lastName %></h3>
+        </div><div id="username-container" class="detail-container">
+            <img class="detail-icon" id="username-icon" src="https://img.icons8.com/fluency/512/000000/username.png"/>
+            <h3 id="username"><%= user.username %></h3>
+        </div><div id="email-container" class="detail-container">
+            <img class="detail-icon" id="phnumber-icon" src="https://img.icons8.com/fluency/512/000000/phone-disconnected.png"/>
+            <h3 id="phnumber"><%= user.phnumber %></h3>
+        </div><div id="email-container" class="detail-container">
+            <img class="detail-icon" id="address-icon" src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/512/000000/external-address-removals-company-inipagistudio-mixed-inipagistudio.png"/>
+            <h3 id="address"><%= user.address %></h3>
+        </div>
+    </div>
+    <a href="/dashboard" id="return-link">Return &uarr;</a>
+</body>
+</html>
